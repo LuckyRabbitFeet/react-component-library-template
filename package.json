@@ -1,0 +1,39 @@
+{
+  "name": "react-component-build-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf types lib esm dist",
+    "build": "npm run clean && gulp",
+    "build:types": "tsc --declaration --outDir dist/ --emitDeclarationOnly"
+  },
+  "keywords": [],
+  "author": "LuckyRabbitFeet <syx@rabbitfeet.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/plugin-proposal-class-properties": "^7.16.5",
+    "@babel/plugin-transform-runtime": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "@babel/preset-typescript": "^7.16.5",
+    "@types/react": "^17.0.38",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-macros": "^3.1.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.4"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.16.5"
+  }
+}
