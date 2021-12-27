@@ -1,49 +1,41 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "baseUrl": ".",
-    "paths": {
-      "geist-ui": [
-        "components/index.tsx"
-      ]
-    },
-    "strictNullChecks": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "jsx": "preserve",
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "noImplicitAny": true,
-    "target": "es6",
+    "target": "es5",
     "lib": [
       "dom",
-      "es2017"
+      "dom.iterable",
+      "esnext"
     ],
-    "skipLibCheck": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "allowJs": true,
-    "strict": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    // "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    // "noEmit": true,
+    "jsx": "react-jsx",
     "typeRoots": [
       "node_modules/@types",
       "./typings"
     ]
   },
-  "exclude": [
-    "node_modules",
-    "es",
-    "examples",
-    "dist"
-  ],
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "lib/**/*.tsx",
     "components/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "esm",
+    "dist"
   ]
 }

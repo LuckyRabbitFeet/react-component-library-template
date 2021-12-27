@@ -1,14 +1,17 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 const paths = {
   dest: {
-    lib: 'lib', // commonjs 文件存放的目录名 - 本块关注
-    esm: 'esm', // ES module 文件存放的目录名 - 暂时不关心
-    dist: 'dist', // umd文件存放的目录名 - 暂时不关心
+    lib: 'lib', // commonjs 文件存放的目录名
+    esm: 'esm', // ES module 文件存放的目录名
+    dist: 'dist', // umd文件存放的目录名
   },
-  styles: 'components/**/*.less', // 样式文件路径 - 暂时不关心
-  scripts: ['components/**/*.{ts,tsx}', '!components/**/demo/*.{ts,tsx}'], // 脚本文件路径
+  styles: 'components/**/*.css', // 样式文件路径
+  scripts: ['components/**/*.{ts,tsx}', '!components/**/demo/*.{ts,tsx}'], // 文件路径
 };
 
 /**
@@ -42,11 +45,27 @@ function compileESM() {
   return compileScripts('esm', dest.esm);
 }
 
+/**
+ * 拷贝less文件
+ */
+function copyLess() {
+  const plugins = [
+    autoprefixer(),
+    cssnano()
+  ];
+
+  return gulp
+    .src(paths.styles)
+    .pipe(postcss(plugins))
+    .pipe(gulp.dest(paths.dest.lib))
+    .pipe(gulp.dest(paths.dest.esm));
+}
+
 // 串行执行编译脚本任务（cjs,esm） 避免环境变量影响
 const buildScripts = gulp.series(compileCJS, compileESM);
 
 // 整体并行执行任务
-const build = gulp.parallel(buildScripts);
+const build = gulp.parallel(buildScripts, copyLess);
 
 exports.build = build;
 
