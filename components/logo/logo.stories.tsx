@@ -1,14 +1,15 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Logo } from './logo';
+import { Logo } from './logo'
 import './styles'
 
-export default {
+const LogoMeta: ComponentMeta<typeof Logo> = {
   title: 'Components/Button',
   component: Logo,
-} as ComponentMeta<typeof Logo>;
+}
 
-const Template: ComponentStory<typeof Logo> = (args) => <Logo {...args} />;
+export default LogoMeta
 
-export const Primary = Template.bind({});
+const Template: ComponentStory<typeof Logo> = (args) => <Logo {...args} />
 
+export const Primary = Template.bind({})
