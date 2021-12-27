@@ -1,4 +1,4 @@
-import img, { ReactComponent as Svg } from '../../images/colors.svg'
+import img, { ReactComponent as Svg } from '../../public/images/logo.svg'
 
 export const Button: React.FC = () => {
   const xxx = new Promise<number>(resolve => {

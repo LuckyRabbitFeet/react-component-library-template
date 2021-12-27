@@ -7,7 +7,12 @@ module.exports = {
       }
     ],
     '@babel/typescript',
-    '@babel/react'
+    [
+      '@babel/react',
+      {
+        "runtime": "automatic"
+      }
+    ]
   ],
   plugins: [
     'macros',

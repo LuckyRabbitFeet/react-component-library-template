@@ -3,6 +3,7 @@ const babel = require('gulp-babel');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const concatCss = require('gulp-concat-css')
 
 const paths = {
   dest: {
@@ -46,9 +47,9 @@ function compileESM() {
 }
 
 /**
- * 拷贝less文件
+ * 拷贝css文件
  */
-function copyLess() {
+function copyCss() {
   const plugins = [
     autoprefixer(),
     cssnano()
@@ -61,11 +62,27 @@ function copyLess() {
     .pipe(gulp.dest(paths.dest.esm));
 }
 
+/**
+ * 合并css文件
+ */
+function concatAllCss() {
+  const plugins = [
+    autoprefixer(),
+    cssnano()
+  ];
+
+  return gulp
+    .src('components/**/*.css')
+    .pipe(concatCss('global.min.css'))
+    .pipe(postcss(plugins))
+    .pipe(gulp.dest('lib'));
+}
+
 // 串行执行编译脚本任务（cjs,esm） 避免环境变量影响
 const buildScripts = gulp.series(compileCJS, compileESM);
 
 // 整体并行执行任务
-const build = gulp.parallel(buildScripts, copyLess);
+const build = gulp.parallel(buildScripts, copyCss, concatAllCss);
 
 exports.build = build;
 
