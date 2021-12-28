@@ -3,11 +3,16 @@ module.exports = {
     [
       '@babel/env',
       {
-        targets: ">0.2%, not dead, not op_mini all"
+        targets: '>0.2%, not dead, not op_mini all'
       }
     ],
     '@babel/typescript',
-    '@babel/react'
+    [
+      '@babel/react',
+      {
+        runtime: 'automatic'
+      }
+    ]
   ],
   plugins: [
     'macros',
@@ -25,4 +30,4 @@ module.exports = {
       ],
     },
   },
-};
+}

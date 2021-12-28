@@ -1,0 +1,14 @@
+# Ignore node_modules
+node_modules
+
+# Ignore some folders
+build
+esm
+lib
+release
+public
+
+# Ignore not supported files
+!.*.js
+.eslintrc.js
+*.d.ts
